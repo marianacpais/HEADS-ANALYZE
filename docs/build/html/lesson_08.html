@@ -288,7 +288,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -304,6 +306,25 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivation">Motivation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-logit-function">The logit function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-building-and-evaluation">Model building and evaluation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-covariates">Selecting covariates</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-evaluation">Model evaluation</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#calibration">Calibration</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#discrimination">Discrimination</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-interpretations">Summary of Interpretations</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -316,6 +337,178 @@ document.write(`
   <section id="lesson-8-logistic-regression">
 <h1>Lesson 8 - Logistic Regression<a class="headerlink" href="#lesson-8-logistic-regression" title="Link to this heading">#</a></h1>
 <p><strong>Topic</strong>: Logistic Regression</p>
+<section id="motivation">
+<h2>Motivation<a class="headerlink" href="#motivation" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Find the best and simplest model that describes the relationship between an outcome (dependent variable) and a set of covariates (independent variables).</p></li>
+<li><p>The main difference between the logistic model and the linear model is that the outcome is a binary (dichotomous) variable.</p></li>
+</ul>
+<p>In case of a binary outcome ( y_i ), we’ll model ( P(y_i | x_i) )</p>
+<p>It is important to mention that:</p>
+<ul class="simple">
+<li><p>If ( y ) is coded as 0 and 1, ( P(y_i|x_i) = \mu_{y|x} )</p></li>
+<li><p>( 0 \leq P(y_i|x_i) \leq 1 )</p></li>
+</ul>
+<p>There are several “s-shaped” functions which are also limited between 0 and 1
+The most common is:
+<img alt="Alt text" src="_images/image8.1.png" /></p>
+<p>The logit function comes after that to help get us back linear</p>
+<p>logit (P(e)) = log (odds(e))</p>
+</section>
+<section id="the-logit-function">
+<h2>The logit function<a class="headerlink" href="#the-logit-function" title="Link to this heading">#</a></h2>
+<p>The logit function stretches the “s-shape” into a straight line.
+That is, if P(yi|xi)is “s-shaped”, logit (P(yi|xi)) is approximately a straight line.
+So,we can use the linear form to model logit(P(yi|xi))</p>
+<p><img alt="Alt text" src="_images/image8.2.png" /></p>
+<p><img alt="Alt text" src="_images/image8.3.png" /></p>
+<ul class="simple">
+<li><p>The coefficients of logistic regression can thus be interpreted as (log) odds ratio.</p></li>
+<li><p>That is, the odds of ( y=1 ) increases ( \exp(\beta_1) ) times when ( x ) increases one unit (also true for continuous ( x )).</p></li>
+</ul>
+<p>The extension of the logistic regression model for multiple covariates is simple:
+<img alt="Alt text" src="_images/image8.4.png" />
+…coefficients are interpreted as odds ratio adjusted for the remaining variables.</p>
+</section>
+<section id="model-building-and-evaluation">
+<h2>Model building and evaluation<a class="headerlink" href="#model-building-and-evaluation" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>We have been studying the estimation, interpretation and inference (CI and hypothesis testing).</p></li>
+<li><p>Often the object of the study is to select the covariates that constitute the “best” model within the scientific context of the problem under analysis.</p></li>
+</ul>
+<p>There are two key points in this process:</p>
+<ul class="simple">
+<li><p>The choice of variables to integrate into the model</p></li>
+<li><p>The evaluation of the adequacy of the model in general and in terms of individually covariates</p></li>
+</ul>
+<section id="selecting-covariates">
+<h3>Selecting covariates<a class="headerlink" href="#selecting-covariates" title="Link to this heading">#</a></h3>
+<p><strong>I - Univariate Analysis</strong></p>
+<ul class="simple">
+<li><p>Test each of the covariates individually</p>
+<ul>
+<li><p>E.g. use contingency tables for categorical variables and t-tests for continuous variables, or use logistic regressions for each covariate</p></li>
+</ul>
+</li>
+<li><p>The advantage of contingency tables is the ease of identifying possible empty categories. This situation may lead to instability in the algorithms used in logistic regression.</p></li>
+<li><p>If there are empty categories, or with few individuals, we should consider joining categories</p></li>
+</ul>
+<p><strong>II - Select the subset of variables to use in the multivariate model</strong></p>
+<ul class="simple">
+<li><p>A commonly used rule is to select covariates with p &lt; 0.25 in the univariate analysis as candidates for the multivariate model</p></li>
+<li><p>Also included in this subgroup are covariates that have a scientific justification or are of direct interest to research (e.g. treatment) even if p&gt; 0.25</p></li>
+</ul>
+<p><strong>III - Running the multivariate model with the subset of covariates</strong></p>
+<ul class="simple">
+<li><p>Examine the significance (statistical and scientific) of covariates in the model</p></li>
+<li><p>Compare the estimation of multivariate model parameters with the estimation of univariate models</p></li>
+<li><p>Variables that do not contribute to the model (and there is no other justification for maintaining them in the model) should be removed one by one and the model should be reevaluated at each step.</p></li>
+</ul>
+<p><strong>IV - Look more closely</strong></p>
+<ul class="simple">
+<li><p>Having obtained a preliminary version of the multivariate model with the set of covariates that we think are the most important, we must now look more closely at each of the variables.</p></li>
+<li><p>Categorical variables must have been analyzed in univariate models.</p></li>
+<li><p>Regarding continuous variables we should check the linearity in the logit scale.</p></li>
+</ul>
+<p><strong>V - Study interactions</strong></p>
+<ul class="simple">
+<li><p>In the last covariate selection step we studied potential interactions between covariates.</p></li>
+<li><p>Due to the number of possible interactions, we usually restrict ourselves to testing interactions that make sense in the context of the problem.</p></li>
+</ul>
+<p><strong>Automatic selection (stepwise)</strong></p>
+<ul class="simple">
+<li><p>Stepwise methods are automatic covariate selection procedures for integrating the model.</p></li>
+<li><p>Some authors criticize this procedure because it is based only on statistical criteria and there is no more active intervention by the researcher.</p></li>
+<li><p>However these methods may be useful for a first approach to model building or when the goal is to get a model with better predictability</p></li>
+</ul>
+<p>There are two stepwise algorithms:</p>
+<ul class="simple">
+<li><p>Backward stepwise</p></li>
+<li><p>Forward stepwise
+Although there are slight variations to the backward and forward stepwise algorithms the fundamental idea is as follows.</p></li>
+</ul>
+<p><em>Backward stepwise</em></p>
+<ul class="simple">
+<li><p>The process starts with all variables in the model and the definition of the output criterion (e.g.max p=0.1).</p></li>
+<li><p>Using the Wald test or likelihood ratio test, we removed from the model the variable with the highest p value, provided that p exceeds the defined output criterion.</p></li>
+<li><p>We run the model again but now without this variable.</p></li>
+<li><p>The process is repeated until there are no more covariates that meet the exit criteria.</p></li>
+</ul>
+<p><em>Forward stepwise</em></p>
+<ul class="simple">
+<li><p>The process begins by making separate logistic regressions for each covariate and defining an input and output criterion (e.g. the input criterion is 0.05 and the output criterion is 0.1).</p></li>
+<li><p>The most significant variable (based on the Wald test or likelihood ratio test) that satisfies the input criterion is chosen to enter the model.</p></li>
+<li><p>We ran regressions separately for the remaining covariates but now with the covariate selected in the previous step.</p></li>
+<li><p>It is possible that by adding one more covariate, the previous covariate will no longer matter. If the p value for the preceding covariate has been changed to a value greater than the output criterion, then the previous covariate is removed.</p></li>
+<li><p>The previous steps are repeated until there are no more covariates that meet the input criteria.</p></li>
+</ul>
+</section>
+<section id="model-evaluation">
+<h3>Model evaluation<a class="headerlink" href="#model-evaluation" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Quality of adjustment</strong> (sometimes referred to as calibration)</p>
+<ul>
+<li><p>Compare the observed outcome with the predicted model</p></li>
+</ul>
+</li>
+<li><p><strong>Ability to discriminate</strong></p>
+<ul>
+<li><p>Given the model covariates what is the ability to classify an individual</p></li>
+</ul>
+</li>
+</ul>
+<section id="calibration">
+<h4>Calibration<a class="headerlink" href="#calibration" title="Link to this heading">#</a></h4>
+<p><strong>Hosmer-Lemeshow Test (chi-squared based)</strong></p>
+<p>General idea:</p>
+<ul class="simple">
+<li><p>Compare what is predicted by the model and what is observed</p></li>
+</ul>
+<p>Problem:</p>
+<ul class="simple">
+<li><p>Observations are binary but the model predicts probabilities</p></li>
+</ul>
+<p>We calculate for each individual the probability predicted by the model.
+Then, we consider the deciles (percentiles 10, 20, …, 90) of the probabilities predicted by the model.
+In each decile we can calculate the number of individuals with event observed and compare it with the expected number.</p>
+</section>
+<section id="discrimination">
+<h4>Discrimination<a class="headerlink" href="#discrimination" title="Link to this heading">#</a></h4>
+<p><strong>Sensitivity &amp; Specificity</strong></p>
+<ul class="simple">
+<li><p>To classify an individual based on the probability predicted by the model we need a rule:</p></li>
+<li><p>For example, classify as</p>
+<ul>
+<li><p>0 if P (y = 1|x) ≤ 0.5</p></li>
+<li><p>1 if P (y = 1|x) &gt; 0.5</p></li>
+</ul>
+</li>
+<li><p>Now we can compare the classification with what is observed</p></li>
+<li><p>We can consider other “cutoffs” as classification criteria instead of 0.5.</p></li>
+<li><p>Any criterion used is not sufficient to give a correct idea of the discriminatory  capacity of the model.</p></li>
+<li><p>As an extreme case, imagine a situation where all probabilities predicted by the  model are less than 0.45; using the “cutoff” 0.5, no individual would be classified as positive outcome.</p></li>
+<li><p>However, the model predicts that some individuals will have this outcome.</p></li>
+</ul>
+<p>One option for choosing a “cutoff point” is to consider all possible “cutoffs” and  calculate their sensitivity and specificity for each situation.</p>
+<p><strong>ROC Curve</strong>
+The graph representing the sensitivity and specificity pairs is called the receiver  operating characteristic (ROC) curve. The area under the ROC curve is a measure of  the model’s ability to discriminate.</p>
+<ul class="simple">
+<li><p>= 0.5  indiscriminative</p></li>
+<li><p>.7 - .8  acceptable</p></li>
+<li><p>.8 - .9 excellent</p></li>
+<li><p>&gt; .9 hummmm…</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="summary-of-interpretations">
+<h2>Summary of Interpretations<a class="headerlink" href="#summary-of-interpretations" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>The coefficients of logistic regression can thus be interpreted as (log) odds ratio.</p></li>
+<li><p>That is, the odds of ( y=1 ) increases ( \exp(\beta_1) ) times when ( x ) increases one unit (also true for continuous ( x )).</p></li>
+<li><p>For an increase of W amount of var_1, there is an increase of Z times the odds of dependent_var.</p></li>
+</ul>
+</section>
 </section>
 
 
@@ -354,7 +547,31 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivation">Motivation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-logit-function">The logit function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-building-and-evaluation">Model building and evaluation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-covariates">Selecting covariates</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-evaluation">Model evaluation</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#calibration">Calibration</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#discrimination">Discrimination</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-interpretations">Summary of Interpretations</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
