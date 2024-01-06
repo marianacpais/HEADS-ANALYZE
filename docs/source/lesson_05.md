@@ -163,7 +163,7 @@ Tends to 1 (total disagreement)
 #### Proportion of Specific Agreement (Positive Agreement - PA; Negative Agreement - NA; etc)
 - If one observer, selected at random, makes the observation X, the probability of another observer making the same obversation is 0.XXX
 - If one observer, selected at random, makes the observation Y, the probability of another observer making the same obversation is 0.YYY
-...
+- ...
 
 ### Reliability
 
