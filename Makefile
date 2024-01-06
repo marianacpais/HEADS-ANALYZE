@@ -4,3 +4,8 @@ clean-doc:
 
 doc:
 	sphinx-build -M html docs/source/ docs/build/
+
+push:
+	git add .
+	git commit -m "Minor push"
+	git push
