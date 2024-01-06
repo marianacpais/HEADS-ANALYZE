@@ -91,7 +91,9 @@ Example:
 | total      |     43     |   7   |  50   |
 
 PA=42/50=0.84
+
 Pe=(43/50)(45/50)+(7/50)(5/50)=0.79
+
 K=(0.84-0.79)/(1-0.79)=0.24
 
 #### Specific agreement
@@ -150,3 +152,27 @@ Tends to 1 (total disagreement)
 
 - Provided differences within mean differences +/- 2SD would not be clinically important, we could use  the two measurement methods interchangeably.
 - It is a clinical (not statistical!) interpretation.
+
+## Summary of interpretations
+
+### Agreement
+
+#### Proportion of agreement (PA)
+- If one observer, selected at random, makes an observation (may be further specified), the probability of another observer making an equal obversation is 0.XXX
+
+#### Proportion of Specific Agreement (Positive Agreement - PA; Negative Agreement - NA; etc)
+- If one observer, selected at random, makes the observation X, the probability of another observer making the same obversation is 0.XXX
+- If one observer, selected at random, makes the observation Y, the probability of another observer making the same obversation is 0.YYY
+...
+
+### Reliability
+
+#### K statistic
+
+K = 1 implies perfect "agreement" and K = 0 suggests that the "agreement" is no better than that which would be obtained by chance.
+There are no objective criteria for judging intermediate values. However, kappa is often judged as providing "agreement" which is:
+- poor if KI 0.20;
+- fair if 0.21 2 K< 0.40;
+- moderate if 0.41 I K< 0.60;
+- substantial if 0.61 I KI 0.80;
+- good if K> 0.80.

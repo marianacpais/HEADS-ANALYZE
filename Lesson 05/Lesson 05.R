@@ -40,11 +40,11 @@ boot.ci(res, type = "bca")
 
 # The reliability of raters was K=0.473 # nolint
 
-# Question 2: to know if the tests are inter substitutable you can do the Bland and Altaman limits of agreemnt (try it with JAMOVI :-) ) # nolint
+# Question 2: to know if the tests are inter substitutable you can do the Bland and Altaman limits of agreement (try it with JAMOVI :-) ) # nolint
 
 # It is also possible to assess the reliability of scores obtained by the two tests using the Intraclass Correlation coefficient, ranging from 0 (no reliability) to 1 (maximum reliability). # nolint
 
-icc(agree[, c(6, 7)]) 
+icc(agree[, c(6, 7)])
 
 # It is also possible to assess the disagreement of scores obtained by the testes using the Information Based Measure of disagreement ranging from 0 (no disagreement=total agreement) to 1 (maximum disagreement). # nolint
 
