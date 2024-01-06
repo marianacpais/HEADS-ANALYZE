@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to HEADS ANALYSE's documentation!
-=========================================
+Welcome to HEADS ANALYSE's MCP notes
+====================================
 
 .. toctree::
    :maxdepth: 2
