@@ -1,3 +1,3 @@
-# Lesson 2
+# Lesson 2 - Descriptive Statistics
 
 **Topic**: Descriptive Statistics
