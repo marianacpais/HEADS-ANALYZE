@@ -120,6 +120,33 @@ NA = \(\frac{2d}{2d + b + c}\)
 PA  yes = 40x2/(40x2+3+5)=0.92
 PA no = 2x2/(2x2+3+5)=0.33
 
-#### Intraclass Correlation Coefficient
+## Intraclass Correlation Coefficient
 
 The Intraclass Correlation (ICC) assesses rating reliability by comparing the variability of different ratings of the same subject to the total variation across all ratings and all subjects.
+
+## Information Based Measure of Disagreement
+
+> The sum over all logarithms of possible outcomes of the variable is a valid measure of the amount of information, or uncertainty, contained in a variable.
+
+*Costa-Santos C. et al. Assessment of Disagreement: A New Information-Based Approach. ANNALS OF EPIDEMIOLOGY. 20(7):555-561*
+
+Consider that we aim to measure disagreement between measurements obtained by Observer Y and Observer X. The disagreement between Y and X is related to the differences between them. So, we consider
+
+![Alt text](../../images/image2.png)
+
+the amount of information contained in the differences between observers.
+
+By adding 1 to the differences, we avoid the behavior of the logarithmic function between 0 and 1.
+To get a value between 0 and 1 we normalize the amount of information contained in the differences to  obtain the following measure of information-based measure of disagreement (IBMD):
+
+![Alt text](../../images/image3.png)
+
+0 – no disagreement
+Tends to 1 (total disagreement)
+
+## Bland and Altman limits of agreement
+
+> Difference against mean
+
+- Provided differences within mean differences +/- 2SD would not be clinically important, we could use  the two measurement methods interchangeably.
+- It is a clinical (not statistical!) interpretation.
