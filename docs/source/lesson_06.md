@@ -2,9 +2,9 @@
 
 **Topic**: Chi-squared test; Simple Linear Regression
 
-# Chi-squared test
+## Chi-squared test
 
-# Statistical Methods
+## Statistical Methods
 Broad division of statistical methods
 - **Descriptive**: Summarize and simplify the Information
 - **Modeling**: Create models to understand complex relations in the data
@@ -16,7 +16,7 @@ The choice of descriptive and inferential methods   depend:
 – Type of variable collected
 – Distributional assumptions
 
-## Descriptive Methods
+### Descriptive Methods
 The Descriptive methods aim to summarize information.
 
 - **Summary measures**
@@ -28,7 +28,7 @@ The Descriptive methods aim to summarize information.
     - Association: correlation, relative risk, odds ratio, hazard ratio, mean difference, risk difference
     - Agreement: kappa statistics, intraclass correlation, sensitivity, specificity, area under the ROC curve
 
-## Inference Methods
+### Inference Methods
 With methods for inference we draw conclusions about
 the population using the sample results
 
@@ -37,7 +37,7 @@ the population using the sample results
   - Parametric: t-test, ANOVA
   - Non-parametric: Mann-Whitney, Wilcoxon...
 
-## Modeling Methods
+### Modeling Methods
 - Typically, we use statistical models to describe the  relation of one outcome (dependent variable) with  multiple variables (covariates or independentvariables)
 - We refer to these methods as multivariablemethod (multivariaterefers to multiple outcomes and multiple covariates)
 - The choice of the model will depend:
@@ -52,22 +52,22 @@ the population using the sample results
 3. Predictors - to determine important risk factors affecting the outcome; e.g.identify risk factors associated with cardiovascular disease
 4. Prediction - prognostic/diagnostic; e.g.severity scores (APACHE, SAPS; PRIMS,MPM,...)
 
-# Regression
+## Regression
 
 - Regression analysis is a broad term for statistical models of the form g(Y)= f(X,β)
   - Where Y stands for the outcome (dependent)  variable(s), X is vector of covariates, β is the vector of  regression parameters, f is some function (known or unknown) and g is a known function.
 - Linear regression, logistic regression, Poisson regression, Cox regression
 
-# Simple Linear Regression
+## Simple Linear Regression
 
-## Regression Line
+### Regression Line
 
 ![Alt text](../../images/image6.1.png)
 ![Alt text](../../images/image6.2.png)
 ![Alt text](../../images/image6.3.png)
 ![Alt text](../../images/image6.4.png)
 
-## Least squares
+### Least squares
 ![Alt text](../../images/image6.5.png)
 
 - We have defined: `ε = y - y^pred`
@@ -92,7 +92,7 @@ The OLS estimator is the best estimator under the following assumptions:
 - Fixing x, y is normally distributed (i.e.the errors,or residuals,are normally distributed)
 - Fixing x, the standard deviation for y is the same for all x’s  (homoscedasticity)
 
-## Inference
+### Inference
 - Note that α̂ and β̂ are estimators of the true α and β (population parameters) based on the sample
 - Usually, we want to make inference about β
 
@@ -154,9 +154,9 @@ And the standard error for an individual prediction is:
 
 ![Alt text](../../images/image6.8.png)
 
-## Model evaluation
+### Model evaluation
 
-### Assumptions
+#### Assumptions
 
 Once we have the regression line, we should check
 - how well the model fits the data (goodness offit), and
@@ -167,11 +167,11 @@ Once we have the regression line, we should check
   - Homoscedasticity
     - Equal variance of y for every x
 
-#### Checking for Assumptions
+##### Checking for Assumptions
 - A common way of checking the model assumptions is to look at the residuals
 - The points should scatter around zero with no clear pattern  and with similar dispersion.
 
-### Goodness of fit
+#### Goodness of fit
 
 - How well the model fits the data or
 - How well x predicts y or
@@ -207,7 +207,7 @@ Note:
 H0: β=0
 - In fact both tests (testing β and testing the explained sum of squares) are equivalent for the case of simple linear regression
 
-## Summary of Interpretations and Concepts
+### Summary of Interpretations and Concepts
 
 **Assumptions:**
 - The association of x and y is linear, i.e., the model for the mean of y is correctly specified
