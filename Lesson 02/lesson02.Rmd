@@ -1,0 +1,63 @@
+# Testes Paramétricos – Exercícios
+
+1. Abra a tabela de dados develop.sav. A tabela de dados develop.sav contém informação sobre o desenvolvimento, aos 5 anos e aos 8 anos, de 39 crianças com uma determinada patologia. Para a medição do desenvolvimento da criança usa-se uma escala que mede o desenvolvimento geral. Essa escala esta dividida em 5 subescalas: desenvolvimento motor, social, audição-linguagem, olho-mão e performance prática. Para além do desenvolvimento da criança aos 5 e aos 8 anos registou-se também se as crianças tiveram ou não anemia antes dos 5 anos e a classe socioeconómica do agregado familiar da criança. 
+
+Na tabela de dados registamos as seguintes variáveis:
+- id – número de identificação da criança no estudo
+- general 1- coeficiente geral da escala de desenvolvimento aos 5 anos
+- general2- coeficiente geral da escala de desenvolvimento aos 8 anos
+- motor1- coeficiente motor da escala de desenvolvimento aos 5 anos
+- motor2- coeficiente motor da escala de desenvolvimento aos 8 anos
+- social1- coeficiente social da escala de desenvolvimento aos 5 anos
+- social2- coeficiente social da escala de desenvolvimento aos 8 anos
+- earlang 1- coeficiente audição-linguagem da escala de desenvolvimento aos 5 anos  
+- earlang 2- coeficiente audição-linguagem da escala de desenvolvimento aos 8 anos  
+- eyehand 1- coeficiente olho-mão da escala de desenvolvimento aos 5 anos
+- eyehand 2- coeficiente olho-mão da escala de desenvolvimento aos 8 anos
+- perf 1- coeficiente de performance prática da escala de desenvolvimento aos 5 anos  
+- perf 2- coeficiente de performance prática da escala de desenvolvimento aos 8 anos  
+- group – grupo a que pertence a criança (1-“Anemic”: com anemia antes dos 5 anos/2-“Non Anemic”: sem anemia antes dos 5)  
+- soclass – classe socioeconómica do agregado familiar da criança (1-“high”: alta/2- “Medium”: média/3-“Low”: baixa)  
+
+```R
+library(car)
+library(doBy)
+
+develop <- read.csv("Lesson 02/develop.csv")
+develop$soclass <- as.factor(develop$soclass)
+```
+
+Para este exercício, assuma que todas as variáveis contínuas seguem uma distribuição normal.  
+a) Haverá diferenças entre as crianças dos três grupos de classe socioeconómica no que diz respeito ao desenvolvimento geral e às várias subescalas de desenvolvimento aos 8 anos?
+
+```R
+oneway.test(general2 ~ soclass, var.equal=T, data=develop)
+```
+
+b) Entre os 5 e os 8 anos houve uma diferença (subida ou descida) do desenvolvimento geral e das várias subescalas de desenvolvimento?  
+c) Haverá diferenças entre as crianças dos dois grupos (com anemia antes dos 5 ou sem anemia antes dos 5) no que diz respeito aos vários coeficientes da escala de desenvolvimento aos 5 anos?  
+d) Haverá diferenças na proporção de crianças acima/abaixo da média na escala de desenvolvimento geral aos 5 anos, entre as crianças dos dois grupos (com anemia antes dos 5 ou sem anemia antes dos 5)? E aos 8 anos?  
+
+Cada questão deve ter como resposta UMA única tabela, cada tabela deve apresentar as medidas de sumários das variáveis estudadas para cada um dos grupos comparados, e o correspondente resultado do teste de hipótese aplicado.  
+
+2. Abrir a base de dados dieta.sav.
+Esta base de dados contém dados relativos a 80 pessoas obesas submetidas a uma dieta. Foi registado o peso em Kg antes e depois da dieta. Haverá uma perda de peso estatisticamente significativa após a dieta? Resolva o exercício de duas formas diferentes: usando uma nova variável que represente a perda de peso e não usando essa variável.
+
+3. Abrir a base de dados alcohol.sav.
+Estes dados são relativos a um trabalho de investigação com o objectivo de estudar determinados factores de risco durante a gravidez (por exemplo, consumo de tabaco e álcool). Temos informação de 454 recém nascidos
+
+a. Podemos afirmar que existe uma diferença significativa no peso à nascença entre os dois sexos?
+
+b. Podemos afirmar que existe uma diferença significativa no perímetro cefálico à nascença entre os dois sexos?
+
+c. Resuma numa tabela os resultados obtidos nas respostas às questões 1 e 2. A tabela deve descrever o peso e o perímetro cefálico nos dois sexos com as medidas de sumárias mais adequadas e apresentar o valor de p da comparação entre os sexos.
+
+4. Abrir a base de dados nutricao.sav.
+
+Esta base de dados com 58 registos contém dados relativos a bebés aquando do nascimento e passados nove meses.
+
+a. Recodifique a variável índice de Graffar em 3 categorias: II, III, IV ou mais. Recodifique também a variável peso ao nascimento em 3 categorias: <3200gr, entre 3200gr e 3500gr inclusive, >3500grb. Haverá diferenças estatisticamente significavas entre os três graus de Graffar criados na alínea a) no que diz respeito ao peso aos nove meses? Escreva a hipótese nula e verifique as assunções do teste a utilizar.
+
+c. Haverá diferenças estatisticamente significavas entre as três categorias de peso à nascença criados na alínea a) no que diz respeito ao peso aos nove meses? Escreva a hipótese nula e verifique as assunções do teste a utilizar.
+
+d. Se encontrou diferenças significativas em alguma das duas alíneas anteriores diga qual ou quais os grupos que têm peso diferente? Utilize uma correção para os teste múltiplos (por exemplo Bonferroni)
