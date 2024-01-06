@@ -37,7 +37,7 @@
   - **Interrater agreement/reliability** (different raters, using the same scale, classification, instrument, or procedure, assess the same subjects or objects).
   - **Intrarater agreement/reliability** (also referred to as test–retest) (the same rater, using the same scale, classification, instrument or procedure, assesses the same subjects or object at different times).
 
-![Alt text](../../images/image.png)
+![Alt text](../../images/image5.1.png)
 
 ## Reliability measures
 - Nominal:
@@ -46,7 +46,7 @@
   - Ranked intraclass correlation
   - Matrix of kappa coefficients
   - Weighted kappa
-- Continuous:
+- Continuous:xzw
   - Intraclass correlation coefficients
 
 ## Agreement measures
@@ -134,14 +134,14 @@ The Intraclass Correlation (ICC) assesses rating reliability by comparing the va
 
 Consider that we aim to measure disagreement between measurements obtained by Observer Y and Observer X. The disagreement between Y and X is related to the differences between them. So, we consider
 
-![Alt text](../../images/image2.png)
+![Alt text](../../images/image5.2.png)
 
 the amount of information contained in the differences between observers.
 
 By adding 1 to the differences, we avoid the behavior of the logarithmic function between 0 and 1.
 To get a value between 0 and 1 we normalize the amount of information contained in the differences to  obtain the following measure of information-based measure of disagreement (IBMD):
 
-![Alt text](../../images/image3.png)
+![Alt text](../../images/image5.3.png)
 
 0 – no disagreement
 Tends to 1 (total disagreement)

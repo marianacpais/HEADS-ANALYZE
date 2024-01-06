@@ -34,6 +34,112 @@
   <section id="lesson-7-multiple-linear-regression">
 <h1>Lesson 7 - Multiple Linear Regression<a class="headerlink" href="#lesson-7-multiple-linear-regression" title="Link to this heading">¶</a></h1>
 <p><strong>Topic</strong>: Multiple Linear Regression</p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>The multiple linear regression is  the natural extension of the simple  linear model for several covariates</p></li>
+</ul>
+<p><img alt="Alt text" src="_images/image7.1.png" /></p>
+<ul class="simple">
+<li><p>Geometrically this corresponds to fit a hyperplane to the data</p></li>
+<li><p>For observations of the same char_1 (fixing char_1), the dep_var increases/decreases by z amount for each wy amount increase in char_2</p></li>
+<li><p>For observations of the same char_2, the dep_var increases/decreases by amount z for each w amount increase in char_1.</p></li>
+</ul>
+</section>
+<section id="model-fit">
+<h2>Model Fit<a class="headerlink" href="#model-fit" title="Link to this heading">¶</a></h2>
+<p>As before, we can ask how much variation of y can be explained by the model
+(with the two covariates).</p>
+<ul class="simple">
+<li><p>The test above shows that the amount of variation explained by the model is significantly higher than zero.</p></li>
+<li><p>This is equivalent to test H0: β<sub>1</sub>=β<sub>2</sub>=0</p></li>
+<li><p>A good practice is to look first at this test and only then look at the  individual tests H<sub>0</sub>:β<sub>A</sub>=0</p></li>
+<li><p>However,the inclusion of an additional variable will allways increase the <strong>r2</strong> so we should be carefull interpreting this  statistics</p></li>
+<li><p>An alternative measure that is often reported is the <strong>adjusted r2</strong></p></li>
+<li><p>The adjusted r2 corrects the r2 for the number of covariates in the model (model complexity)</p></li>
+<li><p>More covariates =&gt; smaller r2</p></li>
+</ul>
+</section>
+<section id="assumptions">
+<h2>Assumptions<a class="headerlink" href="#assumptions" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>To check the linear model assumptions we can use the same tools as before – the analysis of the residuals</p></li>
+</ul>
+</section>
+<section id="categorical-covariates">
+<h2>Categorical covariates<a class="headerlink" href="#categorical-covariates" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>The categorical variables play a “special” role in regression</p></li>
+<li><p>Each equation will correspond to a straight line with the same slope but different intercept</p>
+<ul>
+<li><p>Notice that we are imposing this by chosing this model</p></li>
+</ul>
+</li>
+<li><p>If the categorical variable has more than two  categories there are two possible approaches.</p></li>
+</ul>
+<p><img alt="Alt text" src="_images/image7.2.png" />
+<img alt="Alt text" src="_images/image7.3.png" />
+<img alt="Alt text" src="_images/image7.4.png" />
+<img alt="Alt text" src="_images/image7.5.png" /></p>
+</section>
+<section id="interactions">
+<h2>Interactions<a class="headerlink" href="#interactions" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Allow to define two lines with different intercept and different slopes</p></li>
+</ul>
+</section>
+<section id="model-selection">
+<h2>Model Selection<a class="headerlink" href="#model-selection" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>It is generally assumed that the researcher has some knowledge about the research topic so that he/she can identify a group of variables that are “candidates” for the model.</p></li>
+<li><p>Note that this assumption is also made at the data collection level when the researcher chooses what data to collect.</p></li>
+<li><p>Given the subset of candidate variables, we now want to build a good (best!) model.</p></li>
+<li><p>We designate this process as model building, model selection or simply, modeling.</p></li>
+<li><p>Even with a small subset of covariates the number of possible models is quite large (including the possible interactions and polynomial terms)</p></li>
+<li><p>Three possible strategies are commonly used</p>
+<ul>
+<li><p>Forward selection</p></li>
+<li><p>Backward elimination</p></li>
+<li><p>Forward and backward (stepwise)</p></li>
+</ul>
+</li>
+</ul>
+<section id="forward-selection">
+<h3>Forward selection<a class="headerlink" href="#forward-selection" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>The first variable considered for entry into the equation is the one with the largest positive or negative correlation with the dependent variable.</p></li>
+<li><p>This variable is entered into the equation only if it satisfies the criterion for entry (normally based on the p-value).</p></li>
+<li><p>If the first variable is entered, the independent variable not in the equation that has the largest partial correlation is considered next.</p></li>
+<li><p>The procedure stops when there are no variables that meet the entry criterion.</p></li>
+</ul>
+</section>
+<section id="backward-elimination">
+<h3>Backward elimination<a class="headerlink" href="#backward-elimination" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>A variable selection procedure in which all variables are entered into the equation and then sequentially removed.</p></li>
+<li><p>The variable with the smallest partial correlation with the dependent variable is considered first for removal.</p></li>
+<li><p>If it meets the criterion for elimination, it is removed.</p></li>
+<li><p>After the first variable is removed, the variable remaining in the equation with the smallest partial correlation is considered next.</p></li>
+<li><p>The procedure stops when there are no variables in the equation that satisfy the removal criteria (based on the p-value).</p></li>
+</ul>
+</section>
+<section id="forward-and-backward-stepwise">
+<h3>Forward and backward (stepwise)<a class="headerlink" href="#forward-and-backward-stepwise" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>At each step, the independent variable not in the equation that has the smallest probability of F is entered, if that probability is sufficiently small.</p></li>
+<li><p>Variables already in the regression equation are removed if their probability of F becomes sufficiently large.</p></li>
+<li><p>The method terminates when no more variables are eligible for inclusion or removal.</p></li>
+<li><p>This is very similar to the Forward selection but each variable is reevaluated at each step and can be excluded after being included.</p></li>
+</ul>
+</section>
+</section>
+<section id="summary-of-interpretations">
+<h2>Summary of Interpretations<a class="headerlink" href="#summary-of-interpretations" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>For observations of the same char_1 (fixing char_1), the dep_var increases/decreases by x amount for each y amount increase in char_2</p></li>
+<li><p>For observations of the same char_2, the dep_var increases/decreases by amount x for each y amount increase in char_1.</p></li>
+</ul>
+</section>
 </section>
 
 
@@ -58,12 +164,23 @@
 <li class="toctree-l1"><a class="reference internal" href="lesson_01.html">Lesson 1 - Data Management</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lesson_02.html">Lesson 2 - Descriptive Statistics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lesson_03.html">Lesson 3 - Probability Distributions; Sampling and estimation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lesson_03.html#lesson-3-1">Lesson 3.1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lesson_03.html#lesson-3-2">Lesson 3.2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lesson_04.html">Lesson 4 - Hypothesis testing; Parametric tests; Nonparametric testing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lesson_05.html">Lesson 5 - Reliability and Agreement</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lesson_06.html">Lesson 6 - Chi-squared test; Simple Linear Regression</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Lesson 7 - Multiple Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lesson_06.html#chi-squared-test">Chi-squared test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lesson_06.html#statistical-methods">Statistical Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lesson_06.html#regression">Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lesson_06.html#simple-linear-regression">Simple Linear Regression</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Lesson 7 - Multiple Linear Regression</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#model-fit">Model Fit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#assumptions">Assumptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#categorical-covariates">Categorical covariates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#interactions">Interactions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#model-selection">Model Selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#summary-of-interpretations">Summary of Interpretations</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="lesson_08.html">Lesson 8 - Logistic Regression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lesson_09.html">Lesson 9 - Machine Learning and Data Mining</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lesson_10.html">Lesson 9 - Learning and evaluating classifiers</a></li>

@@ -35,6 +35,285 @@
 <h1>Lesson 6 - Chi-squared test; Simple Linear Regression<a class="headerlink" href="#lesson-6-chi-squared-test-simple-linear-regression" title="Link to this heading">¶</a></h1>
 <p><strong>Topic</strong>: Chi-squared test; Simple Linear Regression</p>
 </section>
+<section id="chi-squared-test">
+<h1>Chi-squared test<a class="headerlink" href="#chi-squared-test" title="Link to this heading">¶</a></h1>
+</section>
+<section id="statistical-methods">
+<h1>Statistical Methods<a class="headerlink" href="#statistical-methods" title="Link to this heading">¶</a></h1>
+<p>Broad division of statistical methods</p>
+<ul class="simple">
+<li><p><strong>Descriptive</strong>: Summarize and simplify the Information</p></li>
+<li><p><strong>Modeling</strong>: Create models to understand complex relations in the data</p></li>
+<li><p><strong>Inference</strong>: Evaluate the precision and generalize the results</p></li>
+</ul>
+<p>The choice of descriptive and inferential methods   depend:
+– Research question
+– Design type
+– Type of variable collected
+– Distributional assumptions</p>
+<section id="descriptive-methods">
+<h2>Descriptive Methods<a class="headerlink" href="#descriptive-methods" title="Link to this heading">¶</a></h2>
+<p>The Descriptive methods aim to summarize information.</p>
+<ul class="simple">
+<li><p><strong>Summary measures</strong></p>
+<ul>
+<li><p>Single Variable</p>
+<ul>
+<li><p>Frequency: counts, percentage, rate, risk, odds, prevalence,incidence</p></li>
+<li><p>Central tendency and position: mean, median, minimum, maximum,percentiles</p></li>
+<li><p>Dispersion: standard deviation (variance), range (e.g. interquartilerange)</p></li>
+</ul>
+</li>
+<li><p>Two variables</p>
+<ul>
+<li><p>Association: correlation, relative risk, odds ratio, hazard ratio, mean difference, risk difference</p></li>
+<li><p>Agreement: kappa statistics, intraclass correlation, sensitivity, specificity, area under the ROC curve</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="inference-methods">
+<h2>Inference Methods<a class="headerlink" href="#inference-methods" title="Link to this heading">¶</a></h2>
+<p>With methods for inference we draw conclusions about
+the population using the sample results</p>
+<ul class="simple">
+<li><p><strong>Confidence intervals</strong></p></li>
+<li><p><strong>Hypothesis Testing</strong></p>
+<ul>
+<li><p>Parametric: t-test, ANOVA</p></li>
+<li><p>Non-parametric: Mann-Whitney, Wilcoxon…</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="modeling-methods">
+<h2>Modeling Methods<a class="headerlink" href="#modeling-methods" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Typically, we use statistical models to describe the  relation of one outcome (dependent variable) with  multiple variables (covariates or independentvariables)</p></li>
+<li><p>We refer to these methods as multivariablemethod (multivariaterefers to multiple outcomes and multiple covariates)</p></li>
+<li><p>The choice of the model will depend:
+– Research question
+– Design type
+– Type of outcome
+– Distributional assumptions</p></li>
+</ul>
+<p><strong>Why do we care about modeling?</strong></p>
+<ol class="arabic simple">
+<li><p>Descriptive - describe strength of the association between outcome and factors of interest eliminating “noise”</p></li>
+<li><p>Adjustment - for covariates/confounders; e.g. compare mortality between hospitals adjusting for the patients’ case-mix</p></li>
+<li><p>Predictors - to determine important risk factors affecting the outcome; e.g.identify risk factors associated with cardiovascular disease</p></li>
+<li><p>Prediction - prognostic/diagnostic; e.g.severity scores (APACHE, SAPS; PRIMS,MPM,…)</p></li>
+</ol>
+</section>
+</section>
+<section id="regression">
+<h1>Regression<a class="headerlink" href="#regression" title="Link to this heading">¶</a></h1>
+<ul class="simple">
+<li><p>Regression analysis is a broad term for statistical models of the form g(Y)= f(X,β)</p>
+<ul>
+<li><p>Where Y stands for the outcome (dependent)  variable(s), X is vector of covariates, β is the vector of  regression parameters, f is some function (known or unknown) and g is a known function.</p></li>
+</ul>
+</li>
+<li><p>Linear regression, logistic regression, Poisson regression, Cox regression</p></li>
+</ul>
+</section>
+<section id="simple-linear-regression">
+<h1>Simple Linear Regression<a class="headerlink" href="#simple-linear-regression" title="Link to this heading">¶</a></h1>
+<section id="regression-line">
+<h2>Regression Line<a class="headerlink" href="#regression-line" title="Link to this heading">¶</a></h2>
+<p><img alt="Alt text" src="_images/image6.1.png" />
+<img alt="Alt text" src="_images/image6.2.png" />
+<img alt="Alt text" src="_images/image6.3.png" />
+<img alt="Alt text" src="_images/image6.4.png" /></p>
+</section>
+<section id="least-squares">
+<h2>Least squares<a class="headerlink" href="#least-squares" title="Link to this heading">¶</a></h2>
+<p><img alt="Alt text" src="_images/image6.5.png" /></p>
+<ul class="simple">
+<li><p>We have defined: <code class="docutils literal notranslate"><span class="pre">ε</span> <span class="pre">=</span> <span class="pre">y</span> <span class="pre">-</span> <span class="pre">y^pred</span></code></p></li>
+<li><p>For each observation (individual) <code class="docutils literal notranslate"><span class="pre">i</span></code> we have:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">ε_i</span> <span class="pre">=</span> <span class="pre">y_i</span> <span class="pre">-</span> <span class="pre">y^pred_i</span> <span class="pre">=</span> <span class="pre">y_i</span> <span class="pre">-</span> <span class="pre">α</span> <span class="pre">-</span> <span class="pre">βx_i</span></code></p>
+<ul>
+<li><p>This represents the value of <code class="docutils literal notranslate"><span class="pre">x</span></code> for the individual <code class="docutils literal notranslate"><span class="pre">i</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>The main idea is to minimize the sum of the squared errors</p>
+<ul>
+<li><p><strong>Sum of squares</strong> = <code class="docutils literal notranslate"><span class="pre">Σ</span> <span class="pre">(ε_i)^2</span> <span class="pre">=</span> <span class="pre">Σ</span> <span class="pre">(y_i</span> <span class="pre">-</span> <span class="pre">α</span> <span class="pre">-</span> <span class="pre">βx_i)^2</span></code></p></li>
+</ul>
+</li>
+<li><p>The reason we square the errors is to “eliminate” the signs of the errors</p></li>
+<li><p>To minimize the sum of squares we first find the zero of the first derivatives:</p>
+<ul>
+<li><p>The derivative of the sum of squares with respect to α:
+<code class="docutils literal notranslate"><span class="pre">∂(sum</span> <span class="pre">of</span> <span class="pre">squares)/∂α</span> <span class="pre">=</span> <span class="pre">0</span> <span class="pre">&lt;=&gt;</span> <span class="pre">Σ</span> <span class="pre">-2(y_i</span> <span class="pre">-</span> <span class="pre">α</span> <span class="pre">-</span> <span class="pre">βx_i)</span> <span class="pre">=</span> <span class="pre">0</span></code></p></li>
+<li><p>The derivative of the sum of squares with respect to β:
+<code class="docutils literal notranslate"><span class="pre">∂(sum</span> <span class="pre">of</span> <span class="pre">squares)/∂β</span> <span class="pre">=</span> <span class="pre">0</span> <span class="pre">&lt;=&gt;</span> <span class="pre">Σ</span> <span class="pre">-2x_i(y_i</span> <span class="pre">-</span> <span class="pre">α</span> <span class="pre">-</span> <span class="pre">βx_i)</span> <span class="pre">=</span> <span class="pre">0</span></code></p></li>
+</ul>
+</li>
+<li><p>We can show that this solution is a minimum and it is known as the <strong>ordinary least squares estimator (OLS)</strong> for the regression parameters.</p></li>
+</ul>
+<p>The OLS estimator is the best estimator under the following assumptions:</p>
+<ul class="simple">
+<li><p>The association of x and y is linear, i.e., the model for the mean of y is correctly specified</p></li>
+<li><p>The observations are independent</p></li>
+<li><p>Fixing x, y is normally distributed (i.e.the errors,or residuals,are normally distributed)</p></li>
+<li><p>Fixing x, the standard deviation for y is the same for all x’s  (homoscedasticity)</p></li>
+</ul>
+</section>
+<section id="inference">
+<h2>Inference<a class="headerlink" href="#inference" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Note that α̂ and β̂ are estimators of the true α and β (population parameters) based on the sample</p></li>
+<li><p>Usually, we want to make inference about β</p></li>
+<li><p>The typical question after fitting the model is about the existence of a statistically significant “effect” of the covariate x on the outcome y</p>
+<ul>
+<li><p>The “effect” of x on y is given by β</p></li>
+</ul>
+</li>
+</ul>
+<p>This corresponds to test the null hypothesis H0:β = 0
+The observed data allow us to test this hypothesis.How?</p>
+<p>We can show that the standard error of β̂ is given by:</p>
+<p><img alt="Alt text" src="_images/image6.6.png" /></p>
+<p>Typically, we do not know σ<sub>yx</sub> but we can estimate se(β̂) using an estimator for σ<sub>yx</sub>.</p>
+<p>So, to test the null hypothesis H0: α=0 in the example</p>
+<p><img alt="Alt text" src="_images/image6.7.png" /></p>
+<p>Having the standard error for the regression parameters estimates we can also compute a  confidence interval (CI) for α and β.</p>
+<p>The 95% confidence interval (CI) for β̂ is calculated as:</p>
+<p><code class="docutils literal notranslate"><span class="pre">CI_95%(β̂)</span> <span class="pre">=</span> <span class="pre">β̂</span> <span class="pre">±</span> <span class="pre">2</span> <span class="pre">×</span> <span class="pre">se(β̂)</span></code>
+For the given estimates:
+<code class="docutils literal notranslate"><span class="pre">CI_95%(β̂)</span> <span class="pre">=</span> <span class="pre">3.4</span> <span class="pre">±</span> <span class="pre">2</span> <span class="pre">×</span> <span class="pre">0.4</span></code>
+Which simplifies to:
+<code class="docutils literal notranslate"><span class="pre">CI_95%(β̂)</span> <span class="pre">=</span> <span class="pre">[2.6;</span> <span class="pre">4.2]</span></code></p>
+<ul class="simple">
+<li><p>What about ( \hat{y}<em>{pred} )? The predicted value for ( y ) (given the covariate ( x )) is based on the parameters estimates! So it is also an estimated value of the “true” ( y</em>{pred} )</p></li>
+</ul>
+<p>( \hat{y}_{pred} = \hat{\alpha} + \hat{\beta}x )</p>
+<ul class="simple">
+<li><p>Therefore, it is also possible to construct a confidence interval for ( \hat{y}_{pred} )</p></li>
+<li><p>However, we have to be specific about the meaning of ( y_{pred} )</p></li>
+<li><p>Notice that if we want to estimate ( \mu_{y|x} ), the expression is the same but the meaning is different:</p></li>
+</ul>
+<p>( \hat{\mu}_{y|x} = \hat{\alpha} + \hat{\beta}x )</p>
+<ul class="simple">
+<li><p>( y_{pred} ) is the prediction of ( y ) for <strong>an individual</strong> that has a certain ( x )</p></li>
+<li><p>( \mu_{y|x} ) is the <strong>average of ( y )</strong> for <strong>individuals</strong> with a certain ( x )</p></li>
+<li><p>The estimates for both quantities are the same but the confidence intervals are very different.</p></li>
+<li><p>The reason for this has to do with the standard errors (se) of the estimates:</p></li>
+</ul>
+<p>The standard error for the mean prediction is given by:</p>
+<p>( se(\hat{\mu}<em>{y|x}) = s</em>{y|x} \sqrt{ \frac{1}{n} + \frac{(x - \bar{x})^2}{\sum_{i}(x_i - \bar{x})^2} } )</p>
+<p>And the standard error for an individual prediction is:</p>
+<p>( se(\hat{y}<em>{pred}) = \sqrt{s^2</em>{y|x} + se(\hat{\mu}_{y|x})} )</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">y_pred</span></code> is the prediction of <code class="docutils literal notranslate"><span class="pre">y</span></code> for <strong>an individual</strong> that has a certain <code class="docutils literal notranslate"><span class="pre">x</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">μ_y|x</span></code> is the <strong>average of <code class="docutils literal notranslate"><span class="pre">y</span></code></strong> for <strong>individuals</strong> with a certain <code class="docutils literal notranslate"><span class="pre">x</span></code></p></li>
+<li><p>Since the confidence interval for both estimates depends on <code class="docutils literal notranslate"><span class="pre">x</span></code>, we can plot the CI for “all” <code class="docutils literal notranslate"><span class="pre">x</span></code>’s</p></li>
+<li><p>The intervals obtained are called the confidence bands</p></li>
+</ul>
+<p><img alt="Alt text" src="_images/image6.8.png" /></p>
+</section>
+<section id="model-evaluation">
+<h2>Model evaluation<a class="headerlink" href="#model-evaluation" title="Link to this heading">¶</a></h2>
+<section id="assumptions">
+<h3>Assumptions<a class="headerlink" href="#assumptions" title="Link to this heading">¶</a></h3>
+<p>Once we have the regression line, we should check</p>
+<ul class="simple">
+<li><p>how well the model fits the data (goodness offit), and</p></li>
+<li><p>the model assumptions:</p>
+<ul>
+<li><p>The model for the mean is correctly specified</p></li>
+<li><p>The distribution of the residuals is normally distributed
+– Or equivalently, y|x is normally distributed</p></li>
+<li><p>Homoscedasticity</p>
+<ul>
+<li><p>Equal variance of y for every x</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<section id="checking-for-assumptions">
+<h4>Checking for Assumptions<a class="headerlink" href="#checking-for-assumptions" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>A common way of checking the model assumptions is to look at the residuals</p></li>
+<li><p>The points should scatter around zero with no clear pattern  and with similar dispersion.</p></li>
+</ul>
+</section>
+</section>
+<section id="goodness-of-fit">
+<h3>Goodness of fit<a class="headerlink" href="#goodness-of-fit" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>How well the model fits the data or</p></li>
+<li><p>How well x predicts y or</p></li>
+<li><p>How much of the variance of y is explained by x or</p></li>
+<li><p>How good is the linear relation between x and y</p></li>
+</ul>
+<p><img alt="Alt text" src="_images/image6.9.png" /></p>
+<ul class="simple">
+<li><p><strong>Pearson’s  correlation (r)</strong>: statistics that measures the linear relation between x and y</p></li>
+<li><p><strong>r^2</strong> gives the amount of variation on y that is explained by x</p></li>
+<li><p>Another way of deriving this statistics (r^2) is to write the <strong>ANOVA table</strong></p>
+<ul>
+<li><p>The variation of ( y ) can be expressed by the sum of squares of ( y )</p></li>
+<li><p>Total sum of squares = ( \sum (y_i - \bar{y})^2 )</p></li>
+<li><p>The total sum of squares can be decomposed as:
+( \sum (y_i - \bar{y})^2 = \sum (y^{pred}_i - \bar{y})^2 + \sum (y_i - y^{pred}_i)^2 )</p></li>
+<li><p><em>Total sum of squares</em> = <em>Explained sum of squares</em> + <em>Residual sum of squares</em></p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="Alt text" src="_images/image6.10.png" /></p>
+<p><img alt="Alt text" src="_images/image6.10.png" /></p>
+<p><img alt="Alt text" src="_images/image6.11.png" /></p>
+<ul class="simple">
+<li><p>So, r^2 may be used as a mesure of goodness of fit</p></li>
+<li><p>An inference question could be formulated regarding the sum squares:</p>
+<ul>
+<li><p>Is the amount of variation explained by the model (explained  sum of  squares) significantly different from zero?</p></li>
+<li><p>For the example, p&lt;0.001 so we can conclude that the amount of variation explained by the model is significantly different from 0</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="Alt text" src="_images/image6.12.png" /></p>
+<p>Note:</p>
+<ul class="simple">
+<li><p>Intuitively the last question may seem related to a previous inference question about the statistically  significant “effect” of the covariate x on the  outcome y:
+H0: β=0</p></li>
+<li><p>In fact both tests (testing β and testing the explained sum of squares) are equivalent for the case of simple linear regression</p></li>
+</ul>
+</section>
+</section>
+<section id="summary-of-interpretations-and-concepts">
+<h2>Summary of Interpretations and Concepts<a class="headerlink" href="#summary-of-interpretations-and-concepts" title="Link to this heading">¶</a></h2>
+<p><strong>Assumptions:</strong></p>
+<ul class="simple">
+<li><p>The association of x and y is linear, i.e., the model for the mean of y is correctly specified</p></li>
+<li><p>The observations are independent</p></li>
+<li><p>Fixing x, y is normally distributed (i.e.the errors,or residuals,are normally distributed)</p></li>
+<li><p>Fixing x, the standard deviation for y is the same for all x’s  (homoscedasticity)</p></li>
+<li><p><strong>Pearson’s  correlation (r)</strong>: statistics that measures the linear relation between x and y</p></li>
+<li><p><strong>r^2</strong> gives the amount of variation on y that is explained by x</p></li>
+<li><p>Another way of deriving this statistics (r^2) is to write the <strong>ANOVA table</strong></p></li>
+<li><p><em>Total sum of squares</em> = <em>Explained sum of squares</em> + <em>Residual sum of squares</em></p></li>
+<li><p>So, r^2 may be used as a mesure of goodness of fit</p></li>
+<li><p>An inference question could be formulated regarding the sum squares:</p>
+<ul>
+<li><p>Is the amount of variation explained by the model (explained  sum of  squares) significantly different from zero?</p></li>
+</ul>
+</li>
+<li><p>Intuitively the last question may seem related to a previous inference question about the statistically  significant “effect” of the covariate x on the  outcome y:
+H0: β=0</p></li>
+<li><p>In fact both tests (testing β and testing the explained sum of squares) are equivalent for the case of simple linear regression</p></li>
+</ul>
+</section>
+</section>
 
 
           </div>
@@ -58,11 +337,25 @@
 <li class="toctree-l1"><a class="reference internal" href="lesson_01.html">Lesson 1 - Data Management</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lesson_02.html">Lesson 2 - Descriptive Statistics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lesson_03.html">Lesson 3 - Probability Distributions; Sampling and estimation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lesson_03.html#lesson-3-1">Lesson 3.1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lesson_03.html#lesson-3-2">Lesson 3.2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lesson_04.html">Lesson 4 - Hypothesis testing; Parametric tests; Nonparametric testing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lesson_05.html">Lesson 5 - Reliability and Agreement</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Lesson 6 - Chi-squared test; Simple Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#chi-squared-test">Chi-squared test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#statistical-methods">Statistical Methods</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#descriptive-methods">Descriptive Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#inference-methods">Inference Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modeling-methods">Modeling Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#regression">Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#simple-linear-regression">Simple Linear Regression</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#regression-line">Regression Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#least-squares">Least squares</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#inference">Inference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#model-evaluation">Model evaluation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#summary-of-interpretations-and-concepts">Summary of Interpretations and Concepts</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="lesson_07.html">Lesson 7 - Multiple Linear Regression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lesson_08.html">Lesson 8 - Logistic Regression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lesson_09.html">Lesson 9 - Machine Learning and Data Mining</a></li>
