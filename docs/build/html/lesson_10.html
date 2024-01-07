@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Lesson 9 - Learning and evaluating classifiers &#8212; HEADS ANALYSE v0.1 documentation</title>
+    <title>Lesson 10 - Learning and evaluating classifiers &#8212; HEADS ANALYSE v0.1 documentation</title>
   
   
   
@@ -161,7 +161,7 @@
 <li class="toctree-l1"><a class="reference internal" href="lesson_07.html">Lesson 7 - Multiple Linear Regression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lesson_08.html">Lesson 8 - Logistic Regression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lesson_09.html">Lesson 9 - Machine Learning and Data Mining</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lesson 9 - Learning and evaluating classifiers</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lesson 10 - Learning and evaluating classifiers</a></li>
 </ul>
 
     </div>
@@ -287,7 +287,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -298,11 +300,32 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Lesson 9 - Learning and evaluating classifiers</h1>
+    <h1>Lesson 10 - Learning and evaluating classifiers</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inductive-bias">Inductive Bias</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypothesis-induction">Hypothesis Induction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-generalization">Model Generalization</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-predictive-models">Evaluating Predictive Models</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#holdout">Holdout</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-sampling">Random sampling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#k-folds-cross-validation">K-folds cross-validation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leave-one-out-cross-validation">Leave-one-out cross-validation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrap">Bootstrap</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -312,9 +335,188 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="lesson-9-learning-and-evaluating-classifiers">
-<h1>Lesson 9 - Learning and evaluating classifiers<a class="headerlink" href="#lesson-9-learning-and-evaluating-classifiers" title="Link to this heading">#</a></h1>
+  <section id="lesson-10-learning-and-evaluating-classifiers">
+<h1>Lesson 10 - Learning and evaluating classifiers<a class="headerlink" href="#lesson-10-learning-and-evaluating-classifiers" title="Link to this heading">#</a></h1>
 <p><strong>Topic</strong>: Learning and evaluating classifiers</p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p><strong>Evidence Based Medicine</strong></p>
+<blockquote>
+<div><p>“Conscient, explicit and criterioususe of the best available evidence in clinical decision”
+Sackett D. (1996)</p>
+</div></blockquote>
+<p><img alt="Alt text" src="_images/image10.1.png" /></p>
+<p><strong>Real-World Biomedical Data</strong></p>
+<blockquote>
+<div><p>“The complicated nature of real-world biomedical data has made it necessary to look beyond traditional biostatistics.”
+Lucas P. (2004)</p>
+</div></blockquote>
+<p><strong>Wealth of Health Data</strong></p>
+<blockquote>
+<div><p>“The routine operation of modern healthcare systems produces a wealth of data in electronic health records, administrative databases, clinical registries, and other clinical systems.”
+Peek &amp; Rodrigues (2018)</p>
+</div></blockquote>
+<p><strong>Knowledge Discovery</strong></p>
+<blockquote>
+<div><p>“It is widely acknowledged that there is great potential for utilizing these routine data for health research to derive new knowledge about health, disease, and treatments.”
+Peek &amp; Rodrigues (2018)</p>
+</div></blockquote>
+<p><strong>Data Science</strong></p>
+<blockquote>
+<div><p>“Study on creation, validation and transformation of data to generate meaning.”
+Data Science Association (2020)</p>
+</div></blockquote>
+<p><strong>Clinical Knowledge Representation</strong></p>
+<blockquote>
+<div><p>“Clinical cases are getting more and more complex, yielding the application of modelling techniques likewise increasingly complex.”
+Lucas P. (2014)</p>
+</div></blockquote>
+<p><strong>Machine Learning</strong></p>
+<blockquote>
+<div><p>“The field of machine learning is concerned with question of how to construct computer programs that automatically improve with experience”
+Mitchell (1997)</p>
+</div></blockquote>
+<p><strong>Supervised Machine Learning Metaphor</strong></p>
+<blockquote>
+<div><p>“There is a teacher who teaches the system a concept, with which the student is able to classify new cases, and there is an error function for that classification.”
+Hastie T., TibshiraniR. &amp; Friedman J. (2001)</p>
+</div></blockquote>
+</section>
+<section id="inductive-bias">
+<h2>Inductive Bias<a class="headerlink" href="#inductive-bias" title="Link to this heading">#</a></h2>
+<p>An algorithm that learns automatically from a set of data looks for a hypothesis, in the space of possible hypotheses, that best fits the training data.</p>
+<p>Each algorithm chooses a representation for this hypothesis.</p>
+<ul class="simple">
+<li><p>The chosen representation represents a <strong>representation bias</strong></p></li>
+<li><p>The way the algorithm searches for the hypothesis represents a <strong>search bias</strong></p></li>
+</ul>
+<blockquote>
+<div><p>“A learner that makes no a priori assumptions regarding the identity of the target concept has no rational basis for classifying any unseen instances.”
+Mitchell (1997)</p>
+</div></blockquote>
+<p><strong>Black boxes</strong></p>
+<blockquote>
+<div><p>“Some machine learning techniques, although very successful from the accuracy point of view, are very opaque in terms of understanding how they make decisions.”
+EU Commission (2019)</p>
+</div></blockquote>
+<section id="hypothesis-induction">
+<h3>Hypothesis Induction<a class="headerlink" href="#hypothesis-induction" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Creating a model from a data set is to induce a hypothesis of association between factors (or between factors and a result), as opposed to deducing models from a theory.</p></li>
+<li><p>We seek hypotheses as correct as possible, i.e. whose model thus formed fits the observed data as well as possible.</p></li>
+</ul>
+</section>
+<section id="model-generalization">
+<h3>Model Generalization<a class="headerlink" href="#model-generalization" title="Link to this heading">#</a></h3>
+<p>We can increase the complexity of the model in an attempt to improve:</p>
+<ul class="simple">
+<li><p>the representation of reality</p></li>
+<li><p>the adequacy of the model to the data</p></li>
+<li><p>the ability to support decisions</p></li>
+</ul>
+<p><em>but…</em></p>
+<p><strong>Model Performance</strong></p>
+<blockquote>
+<div><p>“The generalization performance of a learning method relates to its prediction capability on independent test data.”
+Hastie T., Tibshirani R. &amp; Friedman J. (2001)</p>
+</div></blockquote>
+<p>We say that the model is <strong>overfitting</strong>, that is, that it overfits the seen data, memorizing them, when the performance in the test data is much lower than in the training data.
+We say that the model is <strong>underfitting</strong>, that is, that it did not adjust to the seen data, when the performance is low even in the training data.</p>
+<p><img alt="Alt text" src="_images/image10.2.png" /></p>
+</section>
+</section>
+<section id="evaluating-predictive-models">
+<h2>Evaluating Predictive Models<a class="headerlink" href="#evaluating-predictive-models" title="Link to this heading">#</a></h2>
+<p>There is no universal technique for all induction problems!
+We need to evaluate each technique according to the objective of the studied problem:</p>
+<ul class="simple">
+<li><p>The theoretical evaluation can be exposed, for example, by the inductive characteristics (bias and variance) of the applied models.</p></li>
+<li><p>The controlled experimental evaluation must follow clear and transparent assumptions and procedures in order to guarantee the validity of the created models.</p></li>
+</ul>
+<p><strong>Error Metrics</strong>
+The evaluation of a supervised model is usually performed by analyzing the performance in the classification of new cases, e.g:</p>
+<ul class="simple">
+<li><p>Proportion of correctly classified cases (accuracy, sens, spec, precision, F1, …)</p></li>
+<li><p>Distance between predicted and actual values (e.g. mean squared error)</p></li>
+<li><p>…</p></li>
+</ul>
+<p>But is it possible to understand / explain the origin of the error?</p>
+<ul class="simple">
+<li><p>The type of decision and the type of model built may make such an analysis impossible.</p></li>
+<li><p>The decision is usually based on the discrimination of a continuous value, e.g. a probability.</p></li>
+<li><p>The ROC curves allow the analysis of the impact of these parameters on the error.</p></li>
+</ul>
+<p><strong>Estimating Generalized Error</strong>
+Calculating the classification error on the same data used to train the model produces optimistic estimates, which is why it was agreed to call this the apparent error of the model.
+We must use strategies for error estimation in alternative, independent samples.</p>
+<p>Sampling methods for estimating generalized error:</p>
+<ol class="arabic simple">
+<li><p>Holdout</p></li>
+<li><p>Random sampling (random subsampling)</p></li>
+<li><p>Cross-validation</p></li>
+<li><p>Leave-one-out</p></li>
+<li><p>Bootstrap</p></li>
+</ol>
+<section id="holdout">
+<h3>Holdout<a class="headerlink" href="#holdout" title="Link to this heading">#</a></h3>
+<p>A set of data is separated (e.g. 1/3) which are not used in training (derivation) of the model.
+Estimation of the error is calculated in these held out test set.</p>
+<p><strong>Problems:</strong></p>
+<ul class="simple">
+<li><p>Estimate is pessimistic (final model trained with all the data will be better than just with the training set)</p></li>
+<li><p>It does not allow to evaluate the variability of performance with different combinations of the data (we may have ended up with an “easy” test set)</p></li>
+<li><p>How to choose the test set?</p></li>
+</ul>
+</section>
+<section id="random-sampling">
+<h3>Random sampling<a class="headerlink" href="#random-sampling" title="Link to this heading">#</a></h3>
+<p>The holdout procedure is repeated several times, with equal proportions but random selection of the test set.
+Estimation of the error is aggregated (e.g. mean and standard deviation) from among the various test sets.</p>
+<p><strong>Problems:</strong></p>
+<ul class="simple">
+<li><p>It does not allow to evaluate performance in all existing cases (random selection does not guarantee that all cases have been used in a test set)</p></li>
+</ul>
+</section>
+<section id="k-folds-cross-validation">
+<h3>K-folds cross-validation<a class="headerlink" href="#k-folds-cross-validation" title="Link to this heading">#</a></h3>
+<p>The data is divided into K sub-sets of equal size; K-1 are used for training, and the rest is the test set.
+The procedure is repeated K times, in order to use all the subsets as a test.
+Estimation of the error is aggregated (e.g. mean and standard deviation) from the predictions in the K test sets.</p>
+<p><strong>Problems:</strong></p>
+<ul class="simple">
+<li><p>A portion of the training data is shared between the different runs (i.e. not independent).</p></li>
+<li><p>Aggregate performance estimate is still dependent on the division made.</p></li>
+<li><p>How to divide the data by the K groups?</p></li>
+</ul>
+<p><strong>Specifications:</strong></p>
+<ul class="simple">
+<li><p>It is usual to perform the complete procedure several times (M) to allow different definitions of the groups, with the estimate to be aggregated among all M * K executions</p></li>
+<li><p>It is usual to stratify the groups, i.e., to force that both the training set and the test set have similar class proportions.</p></li>
+<li><p>There are several studies that discuss the validity of the method, namely with regard to  the optimism / pessimism of each estimate</p></li>
+</ul>
+</section>
+<section id="leave-one-out-cross-validation">
+<h3>Leave-one-out cross-validation<a class="headerlink" href="#leave-one-out-cross-validation" title="Link to this heading">#</a></h3>
+<p>Equivalent to an N-folds cross validation, where N is the total number of cases in the set.
+Estimation of the error is aggregated in the N predictions made.
+Probably the most accurate estimate of the model’s performance.</p>
+<p><strong>Problems:</strong></p>
+<ul class="simple">
+<li><p>Computationally more demanding.</p></li>
+<li><p>Usually used only in small data sets.</p></li>
+</ul>
+</section>
+<section id="bootstrap">
+<h3>Bootstrap<a class="headerlink" href="#bootstrap" title="Link to this heading">#</a></h3>
+<p>Samples are drawn from the data set, with replacement, of the same size as the initial set, serving as training sets. Unchosen cases (~ 36.8%) serve as a test set. Procedure is repeated several times.
+The error estimate is aggregated from all iterations(equivalent to leave-one-out, but with less variance).</p>
+<p><strong>Problems:</strong></p>
+<ul class="simple">
+<li><p>Computationally very demanding.</p></li>
+<li><p>Usually used only in small data sets.</p></li>
+</ul>
+</section>
+</section>
 </section>
 
 
@@ -344,7 +546,33 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inductive-bias">Inductive Bias</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypothesis-induction">Hypothesis Induction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-generalization">Model Generalization</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-predictive-models">Evaluating Predictive Models</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#holdout">Holdout</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-sampling">Random sampling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#k-folds-cross-validation">K-folds cross-validation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leave-one-out-cross-validation">Leave-one-out cross-validation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrap">Bootstrap</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
