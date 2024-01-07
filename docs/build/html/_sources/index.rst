@@ -20,6 +20,7 @@ Welcome to HEADS ANALYSE's MCP notes
    lesson_08
    lesson_09
    lesson_10
+   conceitos_chave
 
 
 
