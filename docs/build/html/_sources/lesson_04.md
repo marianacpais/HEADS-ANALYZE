@@ -4,6 +4,8 @@
 
 ## Hypothesis testing
 
+![Alt text](../../images/image4.0.png)
+
 ### Introduction
 
 With confidence intervals we can infer about a parameter in the population based on an estimate of that parameter.
@@ -152,3 +154,38 @@ Bonferroni, Sheffe, Tukey, etc
   - The usefulness of the K-S test is limited.
   - It has very little power with a small sample, i.e. it easily accepts normality for lack of contrary information.
   - It is also very sensitive when the sample is large, i.e. a significant p value is obtained with small deviations from the normal distribution in the sample.
+
+## Nonparametric testing
+
+### Paired samples - Sign test
+
+Sign test ignores much of the information as it only takes into account whether weight loss or weight gain has occurred.
+
+### Paired samples - Signed-rank Wilcoxon test
+
+TBD
+
+### Independent samples - Mann-Whitney Utest
+
+If the groups are not paired we can use Mann-Whitney U test
+
+The values are sorted regardless of the group to which they belong. The sum of ranks, R1, is calculated for one of the groups
+
+- The following statistics are calculated
+
+\( U = n_A n_B + \frac{n_A (n_A + 1)}{2} - R_1 \)
+
+If \( U > \frac{n_A n_B}{2} \), we use the statistic \( U' = n_A n_B - U \)
+
+Using a normal approximation, we obtain the p-value associated with the statistic.
+
+### More than two independent samples - Kruskal-Wallis test
+
+All values are arranged in ascending order so that each value has an assigned position.
+
+The statistic is calculated
+![Alt text](../../images/image4.2.png)
+N = total number of individuals
+ni= total number of individuals in group i
+Ri = sum of positions in group I
+which follows a Chi-square distribution with k-1 degrees of freedom.

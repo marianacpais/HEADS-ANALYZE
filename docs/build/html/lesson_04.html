@@ -324,6 +324,13 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assumption-of-normality-verification">Assumption of normality verification</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nonparametric-testing">Nonparametric testing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paired-samples-sign-test">Paired samples - Sign test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paired-samples-signed-rank-wilcoxon-test">Paired samples - Signed-rank Wilcoxon test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#independent-samples-mann-whitney-utest">Independent samples - Mann-Whitney Utest</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#more-than-two-independent-samples-kruskal-wallis-test">More than two independent samples - Kruskal-Wallis test</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -340,6 +347,7 @@ document.write(`
 <p><strong>Topic</strong>: Hypothesis testing; Parametric tests; Nonparametric testing</p>
 <section id="hypothesis-testing">
 <h2>Hypothesis testing<a class="headerlink" href="#hypothesis-testing" title="Link to this heading">#</a></h2>
+<p><img alt="Alt text" src="_images/image4.0.png" /></p>
 <section id="introduction">
 <h3>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h3>
 <p>With confidence intervals we can infer about a parameter in the population based on an estimate of that parameter.</p>
@@ -485,6 +493,38 @@ Bonferroni, Sheffe, Tukey, etc</p></li>
 </ul>
 </section>
 </section>
+<section id="nonparametric-testing">
+<h2>Nonparametric testing<a class="headerlink" href="#nonparametric-testing" title="Link to this heading">#</a></h2>
+<section id="paired-samples-sign-test">
+<h3>Paired samples - Sign test<a class="headerlink" href="#paired-samples-sign-test" title="Link to this heading">#</a></h3>
+<p>Sign test ignores much of the information as it only takes into account whether weight loss or weight gain has occurred.</p>
+</section>
+<section id="paired-samples-signed-rank-wilcoxon-test">
+<h3>Paired samples - Signed-rank Wilcoxon test<a class="headerlink" href="#paired-samples-signed-rank-wilcoxon-test" title="Link to this heading">#</a></h3>
+<p>TBD</p>
+</section>
+<section id="independent-samples-mann-whitney-utest">
+<h3>Independent samples - Mann-Whitney Utest<a class="headerlink" href="#independent-samples-mann-whitney-utest" title="Link to this heading">#</a></h3>
+<p>If the groups are not paired we can use Mann-Whitney U test</p>
+<p>The values are sorted regardless of the group to which they belong. The sum of ranks, R1, is calculated for one of the groups</p>
+<ul class="simple">
+<li><p>The following statistics are calculated</p></li>
+</ul>
+<p>( U = n_A n_B + \frac{n_A (n_A + 1)}{2} - R_1 )</p>
+<p>If ( U &gt; \frac{n_A n_B}{2} ), we use the statistic ( U’ = n_A n_B - U )</p>
+<p>Using a normal approximation, we obtain the p-value associated with the statistic.</p>
+</section>
+<section id="more-than-two-independent-samples-kruskal-wallis-test">
+<h3>More than two independent samples - Kruskal-Wallis test<a class="headerlink" href="#more-than-two-independent-samples-kruskal-wallis-test" title="Link to this heading">#</a></h3>
+<p>All values are arranged in ascending order so that each value has an assigned position.</p>
+<p>The statistic is calculated
+<img alt="Alt text" src="_images/image4.2.png" />
+N = total number of individuals
+ni= total number of individuals in group i
+Ri = sum of positions in group I
+which follows a Chi-square distribution with k-1 degrees of freedom.</p>
+</section>
+</section>
 </section>
 
 
@@ -543,6 +583,13 @@ Bonferroni, Sheffe, Tukey, etc</p></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#independent-sample-t-test"># Independent Sample T-test</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#one-way-anova-more-than-2-groups">One-Way ANOVA – more than 2 groups</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assumption-of-normality-verification">Assumption of normality verification</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nonparametric-testing">Nonparametric testing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paired-samples-sign-test">Paired samples - Sign test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paired-samples-signed-rank-wilcoxon-test">Paired samples - Signed-rank Wilcoxon test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#independent-samples-mann-whitney-utest">Independent samples - Mann-Whitney Utest</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#more-than-two-independent-samples-kruskal-wallis-test">More than two independent samples - Kruskal-Wallis test</a></li>
 </ul>
 </li>
 </ul>
