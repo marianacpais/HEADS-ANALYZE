@@ -288,7 +288,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -304,6 +306,27 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-distributions">Probability Distributions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-distribution-bernoulli">Probability Distribution - Bernoulli</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-distribution-binomial">Probability Distribution - Binomial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-distribution-poisson">Probability Distribution - Poisson</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#density">Density</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normal-distribution">Normal Distribution</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling-and-estimation">Sampling and estimation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-sampling">Random Sampling</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-the-average-of-a-population">Estimating the average of a population</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -316,6 +339,129 @@ document.write(`
   <section id="lesson-3-probability-distributions-sampling-and-estimation">
 <h1>Lesson 3 - Probability Distributions; Sampling and estimation<a class="headerlink" href="#lesson-3-probability-distributions-sampling-and-estimation" title="Link to this heading">#</a></h1>
 <p><strong>Topic</strong>: Probability Distributions; Sampling and estimation</p>
+<section id="probability-distributions">
+<h2>Probability Distributions<a class="headerlink" href="#probability-distributions" title="Link to this heading">#</a></h2>
+<section id="introduction">
+<h3>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h3>
+<p>A random variable (experiment) can take any value (result) with a given probability within a set of values (sample space).</p>
+<p>A probability distribution shows the probability of all possible values of a variable.</p>
+</section>
+<section id="probability-distribution-bernoulli">
+<h3>Probability Distribution - Bernoulli<a class="headerlink" href="#probability-distribution-bernoulli" title="Link to this heading">#</a></h3>
+<p>In categorical variables the distribution associates a probability to each category.</p>
+<p>Coding male=1 and female=0 we can use both probabilities in the same equation</p>
+<p>( p(\text{gender} = x) = p^x \cdot (1 - p)^{(1-x)} )</p>
+<p>( p(\text{gender} = 1) = p^1 \cdot (1 - p)^0 = p )</p>
+<p>( p(\text{gender} = 0) = p^0 \cdot (1 - p)^1 = 1 - p )</p>
+<p>This function is called Bernoulli distribution and represents the probability distribution of a dichotomous variable</p>
+<p>The variable “gender of newborn” follows a Bernoulli distribution with probability ( p ):</p>
+<p>( \text{gender} \sim \text{Ber}(p) )</p>
+</section>
+<section id="probability-distribution-binomial">
+<h3>Probability Distribution - Binomial<a class="headerlink" href="#probability-distribution-binomial" title="Link to this heading">#</a></h3>
+<p><strong>Example:</strong> Consider a group of 100 newborns. So, what is the probability of observing exactly 70 newborn boys?</p>
+<p><img alt="Alt text" src="_images/image3.1.png" /></p>
+<p>If X is the number of boys of a total of n newborns and p the probability of being a boy, then X follows a
+binomial distribution</p>
+<p>X ~ Bin(n,p)
+The mean of X is np and the variance is np(1-p)</p>
+</section>
+<section id="probability-distribution-poisson">
+<h3>Probability Distribution - Poisson<a class="headerlink" href="#probability-distribution-poisson" title="Link to this heading">#</a></h3>
+<p>But, if instead of X being the number of boys in a sample of 100 babies, so a limited number of events, it was, for example, the number of epileptic seizures in a month?</p>
+<p>In this case, the distribution could be a Poisson.</p>
+<p>In reality, there are a huge number of theoretical distributions and we just need to choose the one which better represents our data.</p>
+</section>
+<section id="density">
+<h3>Density<a class="headerlink" href="#density" title="Link to this heading">#</a></h3>
+<p>For continuous variables, we can not present the probability of a given value.</p>
+<p>Instead of that, we can present the probability of an interval of values.</p>
+<p>Imagine that we can choose smaller and smaller intervals.</p>
+<p>As the intervals get shorter we start seeing a curve called probability density.</p>
+<p>The most famous is the Normal distribution, also called Gaussian curve, but there are many other.</p>
+<p>But, why do we like to fit theoretical distribution to our data?</p>
+<p>When the empirical frequency distribution of the variable that we are studying approaches a theoretical distribution of probabilities (distribution described with a mathematical model) we can use the theoretical knowledge we have about this distribution to answer data-related questions.</p>
+</section>
+<section id="normal-distribution">
+<h3>Normal Distribution<a class="headerlink" href="#normal-distribution" title="Link to this heading">#</a></h3>
+<p>This is the most famous of all theoretical distributions.</p>
+<p><em>But, why?</em></p>
+<ul class="simple">
+<li><p>Has interesting properties</p></li>
+<li><p>Many biological variables have a distribution similar to a normal distribution and that allows us to use the properties and theoretical knowledge that we have about this to explore our data.</p></li>
+<li><p>Is completely defined by the mean (μ) standard deviation (σ)</p></li>
+<li><p>Symmetrical with respect to the mean (mean=median)</p></li>
+</ul>
+<p><strong>Example:</strong>
+Assuming a normal distribution, we can see that 95% of the newborn weighing between 2227 and 4331 (mean=3279 and sd=526) is</p>
+<ul class="simple">
+<li><p>3279 –2×526 = 2227</p></li>
+<li><p>3279 + 2×526 = 433</p></li>
+</ul>
+<p>We can transform any normal distribution into the standard distribution. For that, we need to subtract from each value the sample mean and divide by the standard deviation <strong>(z-score)</strong>.</p>
+<p>The standard normal distribution has mean = 0 and sd = 1.</p>
+<p><strong>Example:</strong>
+Instead of saying that the baby weight was 2130 g…
+We can compute the z-score (2130-3279)/526 and say that:
+The baby was born with a z-score=-2.37, that is, the baby was 2.37 standard deviations below the mean.</p>
+</section>
+</section>
+<section id="sampling-and-estimation">
+<h2>Sampling and estimation<a class="headerlink" href="#sampling-and-estimation" title="Link to this heading">#</a></h2>
+<p><strong>Population:</strong> Group of individual that we care about
+<strong>Sample:</strong> We believe is representative of the population, we will use it to infer conclusions for it</p>
+<p>The quality of the sample (not skewed or representative) is as  important as its size.
+But how do you get a representative sample of population?</p>
+<section id="random-sampling">
+<h3>Random Sampling<a class="headerlink" href="#random-sampling" title="Link to this heading">#</a></h3>
+<p><strong>Simple random samples</strong>: All individuals have equal and independent probabilities of being selected, e.g. the probability of an individual being chosen follows a uniform distribution.</p>
+<p><strong>Stratified:</strong> The population is divided into strata by a variable of interest, and within these strata individuals are randomly chosen.</p>
+<p><strong>By groups:</strong> There are 2 or more stages in the sampling process:</p>
+<ol class="arabic simple">
+<li><p>The groups are chosen randomly</p></li>
+<li><p>Within these groups all individuals are chosen or only a few are randomly selected</p></li>
+</ol>
+</section>
+</section>
+<section id="estimating-the-average-of-a-population">
+<h2>Estimating the average of a population<a class="headerlink" href="#estimating-the-average-of-a-population" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>We cannot know the population average m.</p></li>
+<li><p>But we can estimate this average with a sample average x</p></li>
+<li><p>We take repeated samples of the same size n and calculate the sample mean of each of theses samples.</p></li>
+</ul>
+<p><strong>Distribution of sample means</strong></p>
+<p>If we look into the distribution of all possible sample averages it can be shown (using Central Limit Theorem) that:</p>
+<ul class="simple">
+<li><p>this distribution of the sample means follows a Normal distribution regardless of the distribution of the original data;</p></li>
+<li><p>the average of the mean estimates is equal to the population mean (m);</p></li>
+<li><p>the standard deviation of the mean estimates is equal to the population standard deviation (s) of the original data divided by the square root of the sample size (n);</p></li>
+<li><p>the standard deviation of this distribution is usually called standard error of the mean.</p></li>
+</ul>
+<p><strong>Mean standard error</strong></p>
+<p>Since we cannot calculate the population mean we estimate this average with an estimate (sample mean) that has a certain error: the standard error</p>
+<ul class="simple">
+<li><p>A large standard error indicates an inaccurate estimate.</p></li>
+<li><p>A small standard error indicates an accurate estimate.</p></li>
+<li><p>The standard error decreases if:</p>
+<ul>
+<li><p>sample size increases;</p></li>
+<li><p>population data have a smaller standard deviation.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Confidence intervals for mean</strong></p>
+<p>95% of sample means are between:
+<img alt="Alt text" src="_images/image3.2.png" />
+It can then be stated that with 95% confidence, the observed sample mean is in this range.</p>
+<p><strong>Mean standard of a proportion</strong></p>
+<p>We cannot know a proportion of population p, but we can estimate this proportion with a sample proportion p(estimate).</p>
+<p>If we make the distribution of all possible sample proportions it can be shown that this distribution of sample proportions follows a Normal distribution with mean p.</p>
+<p>The standard error of an estimate of a proportion is the standard deviation of the sample proportions, e.g.
+<img alt="Alt text" src="_images/image3.3.png" /></p>
+<p><strong>Confidence intervals for proportion</strong></p>
+<p>TBD</p>
+</section>
 </section>
 
 
@@ -354,7 +500,33 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-distributions">Probability Distributions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-distribution-bernoulli">Probability Distribution - Bernoulli</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-distribution-binomial">Probability Distribution - Binomial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-distribution-poisson">Probability Distribution - Poisson</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#density">Density</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normal-distribution">Normal Distribution</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling-and-estimation">Sampling and estimation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-sampling">Random Sampling</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-the-average-of-a-population">Estimating the average of a population</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
