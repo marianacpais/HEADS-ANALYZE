@@ -4,6 +4,62 @@
 
 ## Chi-squared test
 
+### Introduction
+
+**Categorical X Categorical**
+
+So far we have considered situations involving a continuous variable.
+How can we build hypothesis tests that only involve categorical variables?
+To study the relationship between two categorical variables we can use contingency tables (double entry tables or cross tables).
+
+**Contingency Tables**
+
+TBD
+
+### Chi-squared test
+
+**Chi squared statistic**: sum of the differences (squared and relativized) between the expected values and observed values   of each cell:
+![Alt text](../../images/image6.13.png)
+
+If the statistic value is too large it means that the expected values (assuming true null hypothesis) are quite different from those observed.
+
+That is, if H0 is true, the probability of obtaining the difference between the expected and observed values   we observed (or more extreme), i.e. the p-value, is very small and we should reject H0.
+
+On the other hand, a chi-squared value close to 0 (expected values   identical to those observed) will have a very high associated p-value.
+
+The chi-squared test is then used for independent samples. As in the other tests:
+
+We defined the hypothesis:
+- H0: There is no association between the categories of one factor and the categories of the other
+
+We set the level of significance (alpha) - usually 0.05
+
+We get the test statistic with the sample data
+\( \chi^2 = \frac{(O - E)^2}{E} \)
+Follows a chi-squared distribution with n-1 degree of freedom
+
+- O – observed values
+- E – expected value if H0 true
+
+We get the p-value
+
+We interpret the value of p
+
+**Assumptions**
+- At most 20% of expected values are less than 5.
+If the assumption is not fulfilled, then Fisher's exact test.
+
+### Fisher's exact test
+- Based on hypergeometric distribution, the probability of obtaining the found set of values is computed using factorials and binomial coefficients, hence increasing the computational effort.
+- For hand calculations, the test is only feasible in the case of a 2×2 contingency table. However the principle of the test can be extended to the general case of an m×n table.
+
+### McNemar test
+
+For Paired Sample
+
+Mcnemar’s test  is based on the statistic
+![Alt text](../../images/image6.14.png)
+
 ## Statistical Methods
 Broad division of statistical methods
 - **Descriptive**: Summarize and simplify the Information

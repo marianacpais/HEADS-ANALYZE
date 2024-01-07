@@ -311,7 +311,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chi-squared-test">Chi-squared test</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chi-squared-test">Chi-squared test</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Chi-squared test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fisher-s-exact-test">Fisher’s exact test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mcnemar-test">McNemar test</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-methods">Statistical Methods</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#descriptive-methods">Descriptive Methods</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inference-methods">Inference Methods</a></li>
@@ -350,6 +356,56 @@ document.write(`
 <p><strong>Topic</strong>: Chi-squared test; Simple Linear Regression</p>
 <section id="chi-squared-test">
 <h2>Chi-squared test<a class="headerlink" href="#chi-squared-test" title="Link to this heading">#</a></h2>
+<section id="introduction">
+<h3>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h3>
+<p><strong>Categorical X Categorical</strong></p>
+<p>So far we have considered situations involving a continuous variable.
+How can we build hypothesis tests that only involve categorical variables?
+To study the relationship between two categorical variables we can use contingency tables (double entry tables or cross tables).</p>
+<p><strong>Contingency Tables</strong></p>
+<p>TBD</p>
+</section>
+<section id="id1">
+<h3>Chi-squared test<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p><strong>Chi squared statistic</strong>: sum of the differences (squared and relativized) between the expected values and observed values   of each cell:
+<img alt="Alt text" src="_images/image6.13.png" /></p>
+<p>If the statistic value is too large it means that the expected values (assuming true null hypothesis) are quite different from those observed.</p>
+<p>That is, if H0 is true, the probability of obtaining the difference between the expected and observed values   we observed (or more extreme), i.e. the p-value, is very small and we should reject H0.</p>
+<p>On the other hand, a chi-squared value close to 0 (expected values   identical to those observed) will have a very high associated p-value.</p>
+<p>The chi-squared test is then used for independent samples. As in the other tests:</p>
+<p>We defined the hypothesis:</p>
+<ul class="simple">
+<li><p>H0: There is no association between the categories of one factor and the categories of the other</p></li>
+</ul>
+<p>We set the level of significance (alpha) - usually 0.05</p>
+<p>We get the test statistic with the sample data
+( \chi^2 = \frac{(O - E)^2}{E} )
+Follows a chi-squared distribution with n-1 degree of freedom</p>
+<ul class="simple">
+<li><p>O – observed values</p></li>
+<li><p>E – expected value if H0 true</p></li>
+</ul>
+<p>We get the p-value</p>
+<p>We interpret the value of p</p>
+<p><strong>Assumptions</strong></p>
+<ul class="simple">
+<li><p>At most 20% of expected values are less than 5.
+If the assumption is not fulfilled, then Fisher’s exact test.</p></li>
+</ul>
+</section>
+<section id="fisher-s-exact-test">
+<h3>Fisher’s exact test<a class="headerlink" href="#fisher-s-exact-test" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Based on hypergeometric distribution, the probability of obtaining the found set of values is computed using factorials and binomial coefficients, hence increasing the computational effort.</p></li>
+<li><p>For hand calculations, the test is only feasible in the case of a 2×2 contingency table. However the principle of the test can be extended to the general case of an m×n table.</p></li>
+</ul>
+</section>
+<section id="mcnemar-test">
+<h3>McNemar test<a class="headerlink" href="#mcnemar-test" title="Link to this heading">#</a></h3>
+<p>For Paired Sample</p>
+<p>Mcnemar’s test  is based on the statistic
+<img alt="Alt text" src="_images/image6.14.png" /></p>
+</section>
 </section>
 <section id="statistical-methods">
 <h2>Statistical Methods<a class="headerlink" href="#statistical-methods" title="Link to this heading">#</a></h2>
@@ -674,7 +730,13 @@ H0: β=0</p></li>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chi-squared-test">Chi-squared test</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chi-squared-test">Chi-squared test</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Chi-squared test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fisher-s-exact-test">Fisher’s exact test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mcnemar-test">McNemar test</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-methods">Statistical Methods</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#descriptive-methods">Descriptive Methods</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inference-methods">Inference Methods</a></li>
