@@ -288,7 +288,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -304,6 +306,26 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypothesis-testing">Hypothesis testing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypothesis-test-error">Hypothesis test - error</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parametric-tests">Parametric tests</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#one-sample-t-test">One Sample T-test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paired-sample-t-test">Paired Sample T-test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#independent-sample-t-test"># Independent Sample T-test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#one-way-anova-more-than-2-groups">One-Way ANOVA – more than 2 groups</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assumption-of-normality-verification">Assumption of normality verification</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -316,6 +338,153 @@ document.write(`
   <section id="lesson-4-hypothesis-testing-parametric-tests-nonparametric-testing">
 <h1>Lesson 4 - Hypothesis testing; Parametric tests; Nonparametric testing<a class="headerlink" href="#lesson-4-hypothesis-testing-parametric-tests-nonparametric-testing" title="Link to this heading">#</a></h1>
 <p><strong>Topic</strong>: Hypothesis testing; Parametric tests; Nonparametric testing</p>
+<section id="hypothesis-testing">
+<h2>Hypothesis testing<a class="headerlink" href="#hypothesis-testing" title="Link to this heading">#</a></h2>
+<section id="introduction">
+<h3>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h3>
+<p>With confidence intervals we can infer about a parameter in the population based on an estimate of that parameter.</p>
+<p>Hypothesis tests are based on another different (but related) approach.</p>
+<p>The idea now is to measure how much the results observed in the sample are compatible with a hypothesis about the population.</p>
+<ol class="arabic simple">
+<li><p>Define the hypothesis</p></li>
+</ol>
+<ul class="simple">
+<li><p>H0 = null hypothesis - no effect on population</p></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><p>Set the significance level (alpha) - usually 0.05</p></li>
+<li><p>Get the test statistic with the sample data and obtain the p-value: probability of obtaining the result we obtained or even more extreme, assuming H0 is true.</p></li>
+<li><p>Interpret the p-value:</p></li>
+</ol>
+<ul class="simple">
+<li><p>if p &lt; alpha, we have enough evidence to reject H0</p></li>
+<li><p>if p ≥ alpha, we do not have enough evidence to reject H0</p></li>
+</ul>
+</section>
+<section id="hypothesis-test-error">
+<h3>Hypothesis test - error<a class="headerlink" href="#hypothesis-test-error" title="Link to this heading">#</a></h3>
+<p><img alt="Alt text" src="_images/image4.1.png" /></p>
+<ul class="simple">
+<li><p><strong>test power</strong> = 1 – beta =  probability of rejecting H0 when false, that is, the ability of the test to detect differences when they exist.</p></li>
+</ul>
+<p>a (alfa) is defined by us when we set the level of significance</p>
+<p>To have a higher test power (1-β) we need:</p>
+<ul class="simple">
+<li><p>larger sample size</p></li>
+<li><p>smaller variability of observations</p></li>
+<li><p>higher effect</p></li>
+<li><p>higher a</p></li>
+</ul>
+</section>
+</section>
+<section id="parametric-tests">
+<h2>Parametric tests<a class="headerlink" href="#parametric-tests" title="Link to this heading">#</a></h2>
+<section id="one-sample-t-test">
+<h3>One Sample T-test<a class="headerlink" href="#one-sample-t-test" title="Link to this heading">#</a></h3>
+<p>With a sample of individuals we want to know if the average of their population is a certain value.</p>
+<p>Define the hypothesis and significance level (alpha)</p>
+<ul class="simple">
+<li><p>H0: Population mean equal to ( \mu_1 )</p></li>
+<li><p>H1: Population mean is different than ( \mu_1 )</p></li>
+</ul>
+<p>Get the test statistic with the sample data</p>
+<p>( t = \frac{\bar{X} - \mu_1}{\frac{s}{\sqrt{n}}} )</p>
+<p>which follows a t-distribution with n-1 degrees of freedom</p>
+</section>
+<section id="paired-sample-t-test">
+<h3>Paired Sample T-test<a class="headerlink" href="#paired-sample-t-test" title="Link to this heading">#</a></h3>
+<p>With two paired samples of individuals, we want to know if the means of the two groups in the population are equal.</p>
+<p>We define the Hypothesis</p>
+<ul class="simple">
+<li><p>H0: ( \mu_1 = \mu_2 ) or ( \mu_1 - \mu_2 = 0 )</p></li>
+<li><p>H1: ( \mu_1 \neq \mu_2 ) or ( \mu_1 - \mu_2 \neq 0 )</p></li>
+</ul>
+<p>We set the significance level (alpha) - usually 0.05</p>
+<p>We get the test statistic with the sample data
+( t = \frac{\text{mean of differences}}{\text{standard error of the differences}} ) which follows a t-distribution with n-1 degrees of freedom</p>
+<p>We get the p-value</p>
+<p>We interpret the value of p</p>
+</section>
+<section id="independent-sample-t-test">
+<h3># Independent Sample T-test<a class="headerlink" href="#independent-sample-t-test" title="Link to this heading">#</a></h3>
+<p>With two independent samples of individuals we want to know if the means of the two groups in the population are equal.</p>
+<p>We define the hypothesis</p>
+<ul class="simple">
+<li><p>H0: ( \mu_1 = \mu_2 ) or ( \mu_1 - \mu_2 = 0 )</p></li>
+<li><p>H1: ( \mu_1 \neq \mu_2 ) or ( \mu_1 - \mu_2 \neq 0 )</p></li>
+</ul>
+<p>We get the test statistic with the sample data
+( t = \frac{(\bar{X}_1 - \bar{X}<em>2) - (\mu_1 - \mu_2)}{s</em>{p}\sqrt{\frac{1}{n_1} + \frac{1}{n_2}}} ), which follows a t-distribution with ( (n_1 + n_2 - 2) ) degrees of freedom</p>
+<p>We set the significance level (alpha) - usually 0.05</p>
+<p>We get the p-value</p>
+<p>We interpret the value of p</p>
+<p><strong>And if the variances are not equal, how to calculate sp?</strong></p>
+<p>Levene’s test tests the hypothesis that the variances are equal in both groups.
+If they are not equal we cannot calculate the grouped estimate of standard deviations (sp) and we have to resort to a modified t-test.</p>
+</section>
+<section id="one-way-anova-more-than-2-groups">
+<h3>One-Way ANOVA – more than 2 groups<a class="headerlink" href="#one-way-anova-more-than-2-groups" title="Link to this heading">#</a></h3>
+<p>We define the null hypothesis:
+H0: μ1 = μ2 = … = μk
+We will have a set of i groups with n<sub>i</sub> individuals each, a total of N individuals, an average of each group x<sub>i</sub> and a common average X</p>
+<ul class="simple">
+<li><p>Between groups variability</p>
+<ul>
+<li><p>Between groups mean sum of squares (Between MS)
+( \frac{\sum (\bar{X}_i - \bar{X})^2}{k - 1} )</p></li>
+</ul>
+</li>
+<li><p>Within groups variability</p>
+<ul>
+<li><p>Within groups mean sum of squares (Within MS)
+Weighted mean of the groups variances</p></li>
+</ul>
+</li>
+</ul>
+<p>But beware: the variance has to be equal in all groups - Levene test.</p>
+<p>It is proved that if ( \mu_1 = \mu_2 = \ldots = \mu_k ), then Between MS ( \sim ) Within MS</p>
+<p>Otherwise, if ( \mu_1 \neq \mu_2 \neq \ldots \neq \mu_k ), Between MS will be higher than Within MS</p>
+<p>So, to test H0: ( \mu_1 = \mu_2 = \ldots = \mu_k ), the F statistic is calculated</p>
+<p>We set the significance level (alpha) - usually 0.05</p>
+<p>We get the test statistic with the sample data
+( F = \frac{\text{Between MS}}{\text{Within MS}} )</p>
+<p>We get the p-value</p>
+<p>We interpret the value of p</p>
+<p><strong>When differences are found, it is sometimes important to know which groups are different.</strong></p>
+<p>One solution is to make multiple comparisons (two by two), like this:
+H0: μ1 = μ2
+H0: μ1 = μ3
+H0: μ1 = μ4
+H0: μ2 = μ3
+H0: μ2 = μ4
+H0: μ3 = μ4</p>
+<p>So… why didn’t we do this from the beginning?</p>
+<p>Suppose H0 true</p>
+<p>We define the significance level  P(type I error) = 0.05  for each test.
+We will have 6 tests to do.
+How likely are you to make at least one type I mistake?
+Is it 0.05?</p>
+<p>The probability of making a type I error in at least one test is greater than 0.05!
+So after doing one way ANOVA and if we want to identify which groups are different we can make multiple comparisons but we have to correct the level of significance.</p>
+<ul class="simple">
+<li><p>There are several fixes implemented in R:
+Bonferroni, Sheffe, Tukey, etc</p></li>
+</ul>
+</section>
+<section id="assumption-of-normality-verification">
+<h3>Assumption of normality verification<a class="headerlink" href="#assumption-of-normality-verification" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Graphical (histograms, etc…)</p></li>
+<li><p>Kolmogorov-Smirnov test</p>
+<ul>
+<li><p>The usefulness of the K-S test is limited.</p></li>
+<li><p>It has very little power with a small sample, i.e. it easily accepts normality for lack of contrary information.</p></li>
+<li><p>It is also very sensitive when the sample is large, i.e. a significant p value is obtained with small deviations from the normal distribution in the sample.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
 </section>
 
 
@@ -354,7 +523,32 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypothesis-testing">Hypothesis testing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypothesis-test-error">Hypothesis test - error</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parametric-tests">Parametric tests</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#one-sample-t-test">One Sample T-test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paired-sample-t-test">Paired Sample T-test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#independent-sample-t-test"># Independent Sample T-test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#one-way-anova-more-than-2-groups">One-Way ANOVA – more than 2 groups</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assumption-of-normality-verification">Assumption of normality verification</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
